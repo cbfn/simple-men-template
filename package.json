@@ -1,0 +1,25 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server",
+  "author": "brab0",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^1.27.0",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.12.3",
+    "simple-men": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0"
+  },
+  "scripts": {
+    "start": "export NODE_ENV=dev && nodemon main.js",
+    "debug": "export NODE_ENV=dev && nodemon --inspect main.js",
+    "test": "mocha -t 10000"
+  }
+}
