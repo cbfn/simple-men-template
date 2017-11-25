@@ -1,15 +1,15 @@
 module.exports = {
-  enviroment : "dev",
-  redis: {
-    port: 6379,
-    host: 'cache'
-  },
-  database : {
-    uri: "mongodb://database/boilerplate",
-    debug: false
-  },
+  enviroment : "dev",  
   server:{
     host : "http://localhost",
     port : 3001
+  },
+  redis:{
+    host : "cache",
+    port : 6379
+  },
+  database : {
+    uri: "mongodb://database/test",
+    debug: false
   }
 }

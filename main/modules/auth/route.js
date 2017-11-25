@@ -5,10 +5,10 @@ const user = require('./controller'),
       router = express.Router();
 
 module.exports = app => {
-
+  
   app.use("/auth", router);
-
-  router.post('/login', (req, res) => {    
+  
+  router.post('/login', (req, res) => {
     user.login(req.body)
     .then(result => res.status(result.statusCode).send(result.data))
     .catch(err => err);

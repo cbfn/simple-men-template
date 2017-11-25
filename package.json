@@ -9,7 +9,7 @@
     "config": "^1.27.0",
     "jsonwebtoken": "^8.1.0",
     "mongoose": "^4.12.3",
-    "simple-men": "^1.0.0"
+    "simple-men": "^1.0.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
