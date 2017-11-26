@@ -1,22 +1,10 @@
 'use strict';
 
-const user = require('./controller'),
-      express = require('express'),
-      router = express.Router();
+const api = require('simple-men');
 
-module.exports = app => {
-  
-  app.use("/auth", router);
-  
-  router.post('/login', (req, res) => {
-    user.login(req.body)
-    .then(result => res.status(result.statusCode).send(result.data))
-    .catch(err => err);
-  });
-
-  router.post('/signin', (req, res) => {
-    user.signIn(req.body)
-    .then(result => res.status(result.statusCode).send(result.data))
-    .catch(err => err);
-  });
-};
+module.exports = () => {
+  api.router
+    .base("/auth")
+    .post('/login', req => api.controllers.Auth.login(req.body))
+    .post('/signin', req => api.controllers.Auth.signIn(req.body))
+}

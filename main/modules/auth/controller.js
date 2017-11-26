@@ -1,46 +1,29 @@
 'use strict';
 
-let config = require('config');
-let mongoose = require('mongoose');
-let User = mongoose.model('User');
+const api = require('simple-men');
+const jwt = require("jsonwebtoken");
 
-module.exports.signIn = user => {
-  return User.signIn(user)
-    .then(res => {
+module.exports = class Auth {  
+  static signIn(user){
+    return api.models.User.signIn(user)
+      .then(res => api.respond(200).send(res))
+      .catch(err => err);
+  }
 
-      return {
-        statusCode: 200,
-        data: res 
-      }
-      
-    })    
-    .catch(err => err);
-};
-
-module.exports.login = user => {
-  return User.login(user)
-    .then(res => {
-
-      if(!res) throw 'Usuário ou senha errados.';
-
-      const jwt = require("jsonwebtoken");
-
-      var token = jwt.sign({
-        nome: res.name
-      }, config.access.admin.secret, {
-        expiresIn: "5 days"
-      });
-      
-      return {
-        statusCode: 200,
-        data: token
-      };
-      
-    })
-    .catch(err => {
-      return {
-        statusCode: 401,
-        data: err 
-      }  
-    });
-};
+  static login(user){
+    return api.models.User.login(user)
+      .then(res => {
+  
+        if(!res) throw 'Usuário ou senha errados.';        
+  
+        var token = jwt.sign({
+          nome: res.name
+        }, api.config.access.admin.secret, {
+          expiresIn: "5 days"
+        });
+        
+        return api.respond(200).send(token)       
+      })
+      .catch(err => api.respond(401).send(err));
+  };
+}

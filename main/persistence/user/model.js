@@ -1,18 +1,11 @@
 'use strict';
 
-let mongoose = require('mongoose');
-
-let Schema = mongoose.Schema;
-
-const jwt = require("jsonwebtoken");
-const settings = require("config");
-
-const UserScheme = require("./scheme")(mongoose);
+const mongoose = require('mongoose');
+const api = require('simple-men');
+const UserScheme = api.schemes.User;
 
 UserScheme.statics.login = user => {
-  const User = mongoose.model('User');
-
-  return User.findOne({
+  return api.models.User.findOne({
     email: user.email,
     password: user.password
   })
@@ -21,7 +14,7 @@ UserScheme.statics.login = user => {
 };
 
 UserScheme.statics.signIn = user => {
-  const User = mongoose.model('User');
+  const User = api.models.User;
   const nUser = new User(user);
   
   return nUser.save()
