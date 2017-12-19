@@ -1,5 +1,4 @@
 version: '2'
-
 services:
   api:
     build: .
@@ -7,19 +6,12 @@ services:
       - "3001:3001"
     depends_on:
       - database
-      - cache
     links:
       - database
-      - cache
     volumes:
-      - .:/var/www/api
-      - /var/www/api/node_modules      
+      - ./:/app  
     restart: always
   database:
     image: mongo
     ports:
       - "27017:27017"
-  cache:
-    image: redis
-    ports:
-      - "6379:6379"

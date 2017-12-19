@@ -1,10 +1,5 @@
-'use strict';
+import { route, controllers } from 'appt';
 
-const api = require('simple-men');
-
-module.exports = () => {
-  api.router
-    .base("/auth")
-    .post('/login', req => api.controllers.Auth.login(req.body))
-    .post('/signin', req => api.controllers.Auth.signIn(req.body))
-}
+route("/auth")
+  .get('/login/:user', req => controllers.auth.login(req.body))
+  .post('/signin', req => controllers.auth.signIn(req.body));

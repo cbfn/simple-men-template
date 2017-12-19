@@ -8,18 +8,23 @@
   "dependencies": {
     "config": "^1.27.0",
     "jsonwebtoken": "^8.1.0",
-    "mongoose": "^4.12.3",
-    "simple-men": "^1.0.4"
+    "appt": "git+https://github.com/brab0/appt.git"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
+    "eslint": "^4.13.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0"
   },
   "scripts": {
-    "start": "export NODE_ENV=dev && nodemon main.js",
-    "debug": "export NODE_ENV=dev && nodemon --inspect main.js",
+    "babel-node": "babel-node --presets=env",
+    "start": "export NODE_ENV=dev && nodemon --exec npm run babel-node -- main.js",
+    "debug": "export NODE_ENV=dev && nodemon --exec npm run babel-node --inspect main.js",
     "test": "mocha -t 10000"
   }
 }

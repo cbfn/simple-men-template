@@ -1,8 +1,6 @@
-'use strict';
+import { register } from 'appt';
 
-const mongoose = require('mongoose');
-
-module.exports.User = new mongoose.Schema({
+const User = {
   name: {
     type: String,
     trim: true,
@@ -26,4 +24,6 @@ module.exports.User = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
-});
+};
+
+register.scheme('User', User);

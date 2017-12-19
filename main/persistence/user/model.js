@@ -1,11 +1,9 @@
-'use strict';
+import { schemes, models, register } from 'appt'
 
-const mongoose = require('mongoose');
-const api = require('simple-men');
-const UserScheme = api.schemes.User;
+const UserScheme = schemes.User;
 
 UserScheme.statics.login = user => {
-  return api.models.User.findOne({
+  return models.User.findOne({
     email: user.email,
     password: user.password
   })
@@ -14,12 +12,11 @@ UserScheme.statics.login = user => {
 };
 
 UserScheme.statics.signIn = user => {
-  const User = api.models.User;
-  const nUser = new User(user);
+  const newUser = new models.User(user);
   
-  return nUser.save()
+  return newUser.save()
   .then(res => res)
   .catch(res => res);
 };
 
-mongoose.model('User', UserScheme);
+register.model('User', UserScheme);

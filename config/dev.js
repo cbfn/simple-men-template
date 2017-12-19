@@ -4,11 +4,8 @@ module.exports = {
     host : "http://localhost",
     port : 3001
   },
-  redis:{
-    host : "cache",
-    port : 6379
-  },
   database : {
+    type: "mongodb",
     uri: "mongodb://database/test",
     debug: false
   }
